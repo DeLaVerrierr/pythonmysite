@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, login, get_user
 from django.core.files.storage import FileSystemStorage
 from django.conf import settings
 from .forms import RegisterUserForm, ProfileForm
-from .models import UserProfile, Profile, Product, CartItem, Order, EmailAddress
+from .models import UserProfile, Profile, Product, CartItem, Order
 import uuid
 from django.contrib.auth.models import User
 from django.contrib.sessions.models import Session
@@ -149,6 +149,8 @@ def profile(request):
         'profile': profile
     }
     return render(request, 'main/profile.html', context)
+
+
 
 
 @login_required
@@ -422,12 +424,4 @@ def get_order_info(request, order_number):
     else:
         return JsonResponse({'error': 'Invalid request method'})
 
-
-def submit_email(request):
-    '''Создание модели почт для рассылки'''
-    if request.method == 'POST':
-        email = request.POST.get('email')
-        email_address = EmailAddress(email=email)
-        email_address.save()
-        return redirect('home')
 

@@ -185,12 +185,18 @@
 			</div>
 		</section>
 
-		<footer class="site-footer">
-			<div class="container">
-				<p>© GU, 2023</p>
-				<p>The first fashion house in Russia</p>
-			</div>
-		</footer>
+<footer class="site-footer">
+  <h8 class="newsletter-title">SUBSCRIBE TO NEWS</h8>
+  <h8 class="newsletter-description">To discover new collections, events and exclusive content.</h8>
+<form class="email-form" action="{% url 'submit_email' %}" method="POST">
+  {% csrf_token %}
+  <input type="email" id="emailInput" name="email" placeholder="Введите адрес электронной почты" required autocomplete="email">
+</form>
+  <div class="container">
+    <p>© GU, 2023</p>
+    <p>The first fashion house in Russia</p>
+  </div>
+</footer>
 		<script src="{% static 'main/js/scrollToTop.js' %}"></script>
 	    <script src="{% static 'main/js/chat.js' %}"></script>
 
